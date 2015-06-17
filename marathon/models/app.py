@@ -142,7 +142,7 @@ class MarathonHealthCheck(MarathonObject):
     """
 
     def __init__(self, command=None, grace_period_seconds=None, interval_seconds=None, max_consecutive_failures=None,
-                 path=None, port_index=None, protocol=None, timeout_seconds=None):
+                 path=None, port_index=None, protocol=None, timeout_seconds=None, ignore_http1xx=None):
         self.command = command
         self.grace_period_seconds = grace_period_seconds
         self.interval_seconds = interval_seconds
@@ -151,6 +151,7 @@ class MarathonHealthCheck(MarathonObject):
         self.port_index = port_index
         self.protocol = protocol
         self.timeout_seconds = timeout_seconds
+        self.ignore_http1xx = ignore_http1xx
 
 
 class MarathonTaskFailure(MarathonObject):
