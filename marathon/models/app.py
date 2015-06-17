@@ -139,6 +139,7 @@ class MarathonHealthCheck(MarathonObject):
     :param int port_index: target port as indexed in app's `ports` array
     :param str protocol: health check protocol ('HTTP', 'TCP', or 'COMMAND')
     :param int timeout_seconds: how long before a waiting health check is considered failed
+    :param bool ignore_http1xx: Ignore HTTP informational status codes 100 to 199.
     """
 
     def __init__(self, command=None, grace_period_seconds=None, interval_seconds=None, max_consecutive_failures=None,
