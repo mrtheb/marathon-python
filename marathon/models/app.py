@@ -12,6 +12,7 @@ class MarathonApp(MarathonResource):
 
     See: https://mesosphere.github.io/marathon/docs/rest-api.html#post-/v2/apps
 
+    :param accepted_resource_roles[str] accepted_resource_roles:
     :param list[str] args: args form of the command to run
     :param int backoff_factor: multiplier for subsequent backoff
     :param int backoff_seconds: base time, in seconds, for exponential backoff
@@ -53,9 +54,10 @@ class MarathonApp(MarathonResource):
     """
 
     UPDATE_OK_ATTRIBUTES = [
-        'args', 'backoff_factor', 'backoff_seconds', 'cmd', 'constraints', 'container', 'cpus', 'dependencies', 'disk',
-        'env', 'executor', 'health_checks', 'instances', 'labels', 'max_launch_delay_seconds', 'mem', 'ports', 'require_ports',
-        'store_urls', 'task_rate_limit', 'upgrade_strategy', 'uris', 'user', 'version'
+        'accepted_resource_roles', 'args', 'backoff_factor', 'backoff_seconds', 'cmd', 'constraints', 'container',
+        'cpus', 'dependencies', 'disk', 'env', 'executor', 'health_checks', 'instances', 'labels',
+        'max_launch_delay_seconds', 'mem', 'ports', 'require_ports', 'store_urls', 'task_rate_limit', 'upgrade_strategy',
+        'uris', 'user', 'version'
     ]
     """List of attributes which may be updated/changed after app creation"""
 
@@ -65,12 +67,14 @@ class MarathonApp(MarathonResource):
     READ_ONLY_ATTRIBUTES = ['deployments', 'tasks', 'tasks_running', 'tasks_staged', 'tasks_healthy', 'tasks_unhealthy']
     """List of read-only attributes"""
 
-    def __init__(self, args=None, backoff_factor=None, backoff_seconds=None, cmd=None, constraints=None, container=None,
+    def __init__(self, accepted_resource_roles=None, args=None, backoff_factor=None, backoff_seconds=None, cmd=None, constraints=None, container=None,
                  cpus=None, dependencies=None, deployments=None, disk=None, env=None, executor=None, health_checks=None,
                  id=None, instances=None, labels=None, last_task_failure=None, max_launch_delay_seconds=None, mem=None,
                  ports=None, require_ports=None, store_urls=None, task_rate_limit=None, tasks=None, tasks_running=None,
                  tasks_staged=None, tasks_healthy=None, tasks_unhealthy=None, upgrade_strategy=None, uris=None, user=None,
                  version=None):
+
+        self.accepted_resource_roles = accepted_resource_roles
 
         # self.args = args or []
         self.args = args
